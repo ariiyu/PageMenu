@@ -11,7 +11,6 @@ import UIKit
 public class CAPSPageMenuConfiguration {
     open var menuHeight : CGFloat = 34.0
     open var menuMargin : CGFloat = 15.0
-    open var menuMarginTopToContainer : CGFloat = 0.0
     open var menuItemWidth : CGFloat = 111.0
     open var selectionIndicatorHeight : CGFloat = 3.0
     open var scrollAnimationDurationOnMenuItemTap : Int = 500 // Millisecons
@@ -35,6 +34,9 @@ public class CAPSPageMenuConfiguration {
     open var centerMenuItems : Bool = false
     open var enableHorizontalBounce : Bool = true
     open var hideTopMenuBar : Bool = false
+
+    open var menuMarginTopToContainer : CGFloat = 0.0
+    open var menuBackgroundView : UIView = UIView()
     
     public init() {
         

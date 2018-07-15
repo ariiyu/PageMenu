@@ -62,6 +62,8 @@ extension CAPSPageMenu {
                 configuration.hideTopMenuBar = value
             case let .menuMarginTopToContainer(value):
                 configuration.menuMarginTopToContainer = value
+            case let .menuBackgroundView(value):
+                configuration.menuBackgroundView = value
             }
         }
         
@@ -102,6 +104,22 @@ extension CAPSPageMenu {
         
         self.view.addConstraints(menuScrollView_constraint_H)
         self.view.addConstraints(menuScrollView_constraint_V)
+        
+        // Add background view for menu scroll view
+        
+        if configuration.menuBackgroundView != UIView() {
+            let menuBackgroundView = configuration.menuBackgroundView
+            
+            self.view.insertSubview(menuBackgroundView, belowSubview: menuScrollView)
+            
+            menuBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let menuBackgroundView_constraint_height = NSLayoutConstraint(item: menuBackgroundView, attribute: .height, relatedBy: .equal, toItem: menuScrollView, attribute: .height, multiplier: 1.0, constant: 0.0)
+            let menuBackgroundView_constraint_top = NSLayoutConstraint(item: menuBackgroundView, attribute: .top, relatedBy: .equal, toItem: menuScrollView, attribute: .top, multiplier: 1.0, constant: 0.0)
+            let menuBackgroundView_constraint_left = NSLayoutConstraint(item: menuBackgroundView, attribute: .left, relatedBy: .equal, toItem: menuScrollView, attribute: .left, multiplier: 1.0, constant: 0.0)
+            let menuBackgroundView_constraint_right = NSLayoutConstraint(item: menuBackgroundView, attribute: .right, relatedBy: .equal, toItem: menuScrollView, attribute: .right, multiplier: 1.0, constant: 0.0)
+            self.view.addConstraints([menuBackgroundView_constraint_height, menuBackgroundView_constraint_top, menuBackgroundView_constraint_left, menuBackgroundView_constraint_right])
+        }
         
         // Add hairline to menu scroll view
         if configuration.addBottomMenuHairline {
